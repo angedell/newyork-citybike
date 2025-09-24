@@ -1,10 +1,10 @@
-'use client';
-import { useQuery } from '@tanstack/react-query';
-import { getFavorites } from './lib/favorites';
-import { FavStation } from './components/fav-station';
-import { SortBy } from './components/sorty-by';
-import { useState } from 'react';
-import { FavStationType } from '@/types';
+"use client";
+import { useQuery } from "@tanstack/react-query";
+import { getFavorites } from "./lib/favorites";
+import { FavStation } from "./components/fav-station";
+import { SortBy } from "./components/sorty-by";
+import { useState } from "react";
+import { FavStationType } from "@/types";
 
 export default function Favorites() {
   const [sortedFavorites, setSortedFavorites] = useState<FavStationType[]>([]);
@@ -17,14 +17,13 @@ export default function Favorites() {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['favorites'],
+    queryKey: ["favorites"],
     queryFn: async () => {
       const favs = await getFavorites();
       setSortedFavorites(favs);
       return favs;
     },
   });
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -35,6 +34,10 @@ export default function Favorites() {
 
   if (!favorites || favorites.length === 0) {
     return <div className="p-4 rounded shadow">No favorites yet.</div>;
+  }
+
+  if (!sortedFavorites || sortedFavorites.length === 0) {
+    setSortedFavorites(favorites);
   }
 
   return (
