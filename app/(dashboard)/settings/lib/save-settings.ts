@@ -1,14 +1,13 @@
-'use server';
-import { getUserIdFromSession } from '@/lib/session';
-import { getXataClient } from '@/lib/xata';
+"use server";
+import { getUserIdFromSession } from "@/lib/session";
+import { getXataClient } from "@/lib/xata";
 
 const client = getXataClient();
 
 export async function saveSettings(value: string) {
   const sessId = await getUserIdFromSession();
-  if (!sessId) {
-    return;
-  }
+  if (!sessId) return;
+
   await client.db.nextauth_users.update(sessId, {
     mapsToUse: value,
   });
@@ -19,8 +18,8 @@ export async function saveSettings(value: string) {
 export async function loadSettings() {
   const sessId = await getUserIdFromSession();
   const data = await client.db.nextauth_users
-    .select(['mapsToUse'])
-    .filter('id', sessId)
+    .select(["mapsToUse"])
+    .filter("id", sessId)
     .getMany();
-  return data[0]['mapsToUse'];
+  return data[0]["mapsToUse"];
 }

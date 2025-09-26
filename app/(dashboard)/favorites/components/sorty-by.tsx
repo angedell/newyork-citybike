@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 import {
   Select,
@@ -8,10 +8,10 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Coordinates, FavStationType } from '@/types';
-import { useLocation } from '@/components/location-provider';
-import { calculateDistance } from '@/lib/distance';
+} from "@/components/ui/select";
+import { Coordinates, FavStationType } from "@/types";
+import { useLocation } from "@/components/location-provider";
+import { calculateDistance } from "@/lib/distance";
 
 interface SortByProps {
   favorites: FavStationType[];
@@ -41,24 +41,24 @@ export function SortBy({ favorites, onSortChange }: SortByProps) {
     const distanceCmp = (a: FavStationType, b: FavStationType) =>
       (a.distance || 0) - (b.distance || 0);
     switch (value) {
-      case 'dist-desc':
+      case "dist-desc":
         sortedFavorites.sort(distanceCmp).reverse();
         break;
-      case 'dist-asc':
+      case "dist-asc":
         sortedFavorites.sort(distanceCmp);
         break;
-      case 'date-desc':
+      case "date-desc":
         sortedFavorites.sort(
           (a, b) =>
-            new Date(a.addedAt || '').getTime() -
-            new Date(b.addedAt || '').getTime()
+            new Date(a.addedAt || "").getTime() -
+            new Date(b.addedAt || "").getTime()
         );
         break;
-      case 'date-asc':
+      case "date-asc":
         sortedFavorites.sort(
           (a, b) =>
-            new Date(b.addedAt || '').getTime() -
-            new Date(a.addedAt || '').getTime()
+            new Date(b.addedAt || "").getTime() -
+            new Date(a.addedAt || "").getTime()
         );
         break;
       default:

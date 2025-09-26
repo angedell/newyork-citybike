@@ -7,12 +7,15 @@ import { Separator } from "@/components/ui/separator";
 import { nextFavoriteStation } from "../lib/favorites";
 import { useQuery } from "@tanstack/react-query";
 
+const num_docks_available_warning = 2;
+
 const DocksAvailable = ({ station }: FavStationTypeProps) => {
   const { data: nextStation, isLoading } = useQuery({
     queryKey: ["nextStation", station.id],
     queryFn: async () => await nextFavoriteStation(station.coordinates),
     staleTime: 1000,
-    enabled: station.num_docks_available > 2 ? false : true,
+    enabled:
+      station.num_docks_available > num_docks_available_warning ? false : true,
   });
 
   if (station.num_docks_available === 0 && nextStation) {
@@ -44,7 +47,7 @@ const DocksAvailable = ({ station }: FavStationTypeProps) => {
     );
   }
 
-  if (station.num_docks_available > 2) {
+  if (station.num_docks_available > num_docks_available_warning) {
     return (
       <div className="flex justify-between">
         <Button variant={"outline"}>

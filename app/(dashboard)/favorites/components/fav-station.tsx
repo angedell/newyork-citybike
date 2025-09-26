@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   Card,
   CardAction,
@@ -6,11 +6,11 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { RemoveFromFavorites } from '../../dashboard/components/remove-from-favorites';
-import { FavStationTypeProps } from '@/types';
-import StationDistance from '../../dashboard/components/station-distance';
-import DocksAvailable from './docks-available';
+} from "@/components/ui/card";
+import { RemoveFromFavorites } from "../../dashboard/components/remove-from-favorites";
+import { FavStationTypeProps } from "@/types";
+import StationDistance from "../../dashboard/components/station-distance";
+import DocksAvailable from "./docks-available";
 
 export function FavStation({ station }: FavStationTypeProps) {
   return (
