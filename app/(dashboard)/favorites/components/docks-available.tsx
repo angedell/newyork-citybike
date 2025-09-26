@@ -15,16 +15,31 @@ const DocksAvailable = ({ station }: FavStationTypeProps) => {
     enabled: station.num_docks_available > 2 ? false : true,
   });
 
-  if (station.num_docks_available === 0) {
+  if (station.num_docks_available === 0 && nextStation) {
     return (
-      <div className="flex justify-between">
-        <Button variant={"destructive"}>
+      <div className="flex flex-col gap-2">
+        <div className="flex justify-between">
+          <Button variant={"destructive"}>
+            <div className="flex items-center gap-2">
+              <CircleParking width={80} height={80} />
+              {station.num_docks_available}
+            </div>
+          </Button>
+          <DirectionsButton station={station} />
+        </div>
+        <Separator />
+        <div className="flex justify-between">
           <div className="flex items-center gap-2">
-            <CircleParking width={80} height={80} />
-            {station.num_docks_available}
+            <Button variant={"outline"}>
+              <div className="flex items-center gap-2">
+                <CircleParking width={80} height={80} />
+                {nextStation.num_docks_available}
+              </div>
+            </Button>
+            <span>{nextStation.name}</span>
           </div>
-        </Button>
-        <DirectionsButton station={station} />
+          <DirectionsButton station={nextStation} />
+        </div>
       </div>
     );
   }
