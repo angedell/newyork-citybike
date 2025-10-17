@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getFavorites } from "./lib/favorites";
 import { FavStation } from "./components/fav-station";
 import { SortBy } from "./components/sorty-by";
-import { useState } from "react";
 import { FavStationType } from "@/types";
+import { useState } from "react";
 
 export default function Favorites() {
   const [sortedFavorites, setSortedFavorites] = useState<FavStationType[]>([]);
