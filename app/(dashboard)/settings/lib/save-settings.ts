@@ -22,5 +22,5 @@ export async function loadSettings() {
     .select(['mapsToUse'])
     .filter('id', sessId)
     .getMany();
-  return data[0]['mapsToUse'];
+  return data[0]?.['mapsToUse'] ?? null;
 }

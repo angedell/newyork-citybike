@@ -32,12 +32,13 @@ export function SortBy({ favorites, onSortChange }: SortByProps) {
     }
     return 0;
   }
-  favorites.forEach((fav) => {
-    fav.distance = calcDistance(fav.coordinates);
-  });
+  const favoritesWithDistance = favorites.map((fav) => ({
+    ...fav,
+    distance: calcDistance(fav.coordinates),
+  }));
 
   function handleSortChange(value: string) {
-    const sortedFavorites = [...favorites];
+    const sortedFavorites = [...favoritesWithDistance];
     const distanceCmp = (a: FavStationType, b: FavStationType) =>
       (a.distance || 0) - (b.distance || 0);
     switch (value) {
