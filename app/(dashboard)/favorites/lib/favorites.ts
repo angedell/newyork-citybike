@@ -70,9 +70,7 @@ export async function removeFromFavorites(stationId: string) {
     }
   } catch (err) {
     console.error(err);
-  } finally {
-    console.log('removed');
-    return await new Promise((resolve) => setTimeout(resolve, 5));
+    throw err;
   }
 }
 
@@ -106,8 +104,7 @@ export async function formToFavorites(name: string, stationId: string) {
     }
   } catch (err) {
     console.error(err);
-  } finally {
-    return await new Promise((resolve) => setTimeout(resolve, 5));
+    throw err;
   }
 }
 
@@ -131,9 +128,7 @@ export async function resetFavoriteName(stationId: string) {
     }
   } catch (err) {
     console.error(err);
-  } finally {
-    console.log('removed');
-    return await new Promise((resolve) => setTimeout(resolve, 5));
+    throw err;
   }
 }
 
